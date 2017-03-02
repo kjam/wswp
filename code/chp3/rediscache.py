@@ -6,7 +6,7 @@ from redis import StrictRedis
 
 class RedisCache:
     """ RedisCache helps store urls and their responses to Redis
-        Intialization components:
+        Initialization components:
             client: a Redis client connected to the key-value database for
                 the webcrawling cache (if not set, a localhost:6379
                 default connection is used).

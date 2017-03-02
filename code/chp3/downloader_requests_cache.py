@@ -12,12 +12,15 @@ class Downloader:
             user_agent (str): user agent string (default: 'wswp')
             proxies (list[dict]): list of possible proxies, each
                 must be a dict with http / https keys and proxy values
+            timeout (float/int): number of seconds to wait until timeout
     """
-    def __init__(self, delay=5, user_agent='wswp', proxies=None):
+    def __init__(self, delay=5, user_agent='wswp', proxies=None,
+                 timeout=60):
         self.throttle = Throttle(delay)
         self.user_agent = user_agent
         self.proxies = proxies
         self.num_retries = None  # we will set this per request
+        self.timeout = timeout
 
     def __call__(self, url, num_retries=2):
         """ Call the downloader class, which will return HTML from cache
@@ -61,16 +64,17 @@ class Downloader:
         session.hooks = {'response': self.make_throttle_hook(self.throttle)}
 
         try:
-            resp = session.get(url, headers=headers, proxies=proxies)
+            resp = session.get(url, headers=headers, proxies=proxies,
+                               timeout=self.timeout)
             html = resp.text
             if resp.status_code >= 400:
-                print('Download error:', resp.text())
+                print('Download error:', resp.text)
                 html = None
                 if self.num_retries and 500 <= resp.status_code < 600:
                     # recursively retry 5xx HTTP errors
                     self.num_retries -= 1
                     return self.download(url, headers, proxies)
         except requests.exceptions.RequestException as e:
-            print('Download error:', e.reason)
-            html = None
+            print('Download error:', e)
+            return {'html': None, 'code': 500}
         return {'html': html, 'code': resp.status_code}

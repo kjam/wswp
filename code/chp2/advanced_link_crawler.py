@@ -31,7 +31,7 @@ def download(url, user_agent='wswp', num_retries=2, charset='utf-8', proxy=None)
             cs = charset
         html = resp.read().decode(cs)
     except (URLError, HTTPError, ContentTooShortError) as e:
-        print('Download error:', e.reason)
+        print('Download error:', e)
         html = None
         if num_retries > 0:
             if hasattr(e, 'code') and 500 <= e.code < 600:

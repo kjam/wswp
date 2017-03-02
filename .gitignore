@@ -60,3 +60,4 @@ target/
 */.*~
 .*/
 data/
+*.rdb
