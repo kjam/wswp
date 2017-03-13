@@ -3,7 +3,7 @@
 import re
 import csv
 import time
-try: 
+try:
     from PySide.QtGui import QApplication
     from PySide.QtCore import QUrl, QEventLoop, QTimer
     from PySide.QtWebKit import QWebView
@@ -13,8 +13,8 @@ except ImportError:
     from PyQt4.QtWebKit import QWebView
 import lxml.html
 
-  
-class BrowserRender(QWebView):  
+
+class BrowserRender(QWebView):
     def __init__(self, display=True):
         self.app = QApplication([])
         QWebView.__init__(self)
@@ -70,10 +70,10 @@ class BrowserRender(QWebView):
             matches = self.find(pattern)
             if matches:
                 return matches
-        print 'Wait load timed out'
+        print('Wait load timed out')
 
 
-def main(): 
+def main():
     br = BrowserRender()
     br.open('http://example.webscraping.com/search')
     br.attr('#search_term', 'value', '.')
