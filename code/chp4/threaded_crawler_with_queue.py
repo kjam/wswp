@@ -45,7 +45,7 @@ def get_links(html, link_regex):
 
 
 def threaded_crawler_rq(start_url, link_regex, user_agent='wswp', proxies=None,
-                        delay=3, max_depth=4, num_retries=2, cache={}, max_threads=10):
+                        delay=3, max_depth=4, num_retries=2, cache={}, max_threads=10, scraper_callback=None):
     """ Crawl from the given start URLs following links matched by link_regex. In this
         implementation, we do not actually scrape any information.
 
@@ -63,6 +63,7 @@ def threaded_crawler_rq(start_url, link_regex, user_agent='wswp', proxies=None,
             num_retries (int): # of retries when 5xx error (default: 2)
             cache (dict): cache dict with urls as keys
                           and dicts for responses (default: {})
+            scraper_callback: function to be called on url and html content
     """
     crawl_queue = RedisQueue()
     crawl_queue.push(start_url)
@@ -98,9 +99,12 @@ def threaded_crawler_rq(start_url, link_regex, user_agent='wswp', proxies=None,
                 html = D(url, num_retries=num_retries)
                 if not html:
                     continue
-                # TODO: add actual data scraping here
+                if scraper_callback:
+                    links = scraper_callback(url, html) or []
+                else:
+                    links = []
                 # filter for links matching our regular expression
-                for link in get_links(html, link_regex):
+                for link in get_links(html, link_regex) + links:
                     if 'http' not in link:
                         link = clean_link(url, domain, link)
                     crawl_queue.push(link)

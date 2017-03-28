@@ -27,7 +27,7 @@ def get_links(html):
 
 
 def link_crawler(start_url, link_regex, robots_url=None, user_agent='wswp',
-                 proxies=None, delay=3, max_depth=4, num_retries=2, cache={}):
+                 proxies=None, delay=3, max_depth=4, num_retries=2, cache={}, scraper_callback=None):
     """ Crawl from the given start URL following links matched by link_regex. In the current
         implementation, we do not actually scrapy any information.
 
@@ -43,6 +43,7 @@ def link_crawler(start_url, link_regex, robots_url=None, user_agent='wswp',
             max_depth (int): maximum crawl depth (to avoid traps) (default: 4)
             num_retries (int): # of retries when 5xx error (default: 2)
             cache (dict): cache dict with urls as keys and dicts for responses (default: {})
+            scraper_callback: function to be called on url and html content
     """
     if isinstance(start_url, list):
         crawl_queue = start_url
@@ -76,9 +77,12 @@ def link_crawler(start_url, link_regex, robots_url=None, user_agent='wswp',
             html = D(url, num_retries=num_retries)
             if not html:
                 continue
-            # TODO: add actual data scraping here
+            if scraper_callback:
+                links = scraper_callback(url, html) or []
+            else:
+                links = []
             # filter for links matching our regular expression
-            for link in get_links(html):
+            for link in get_links(html) + links:
                 if re.match(link_regex, link):
                     if 'http' not in link:
                         if link.startswith('//'):
