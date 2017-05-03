@@ -59,6 +59,5 @@ target/
 *~
 */.*~
 .*/
-data/
 *.rdb
 config/
