@@ -1,6 +1,6 @@
 ## Web Scraping with Python
 
-Welcome to the code repository for [Data Wrangling with Python]()! I hope you find the code and data here useful. If you have any questions reach out to @kjam on Twitter or GitHub.
+Welcome to the code repository for [Web Scraping with Python, Second Edition]()! I hope you find the code and data here useful. If you have any questions reach out to @kjam on Twitter or GitHub.
 
 ### Code Structure
 
@@ -22,7 +22,12 @@ Feel free to reach out if you have any questions!
 
 ### Corrections?
 
-If you find any issues in these code examples, feel free to submit an Issue or Pull Request. We appreciate your input!
+If you find any issues in these code examples, feel free to submit an Issue or Pull Request. I appreciate your input!
+
+
+### First edition repository
+
+If you are looking for the first edition's repository, you can find it here: [Web Scraping with Python, First Edition](https://bitbucket.org/wswp/)
 
 ### Questions?
 
