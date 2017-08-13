@@ -6,7 +6,7 @@ import requests
 from chp1.throttle import Throttle
 
 
-def download(url, user_agent='wswp', num_retries=2, proxies=None):
+def download(url, num_retries=2, user_agent='wswp', proxies=None):
     """ Download a given URL and return the page content
         args:
             url (str): URL

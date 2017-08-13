@@ -2,7 +2,7 @@ import urllib.request
 from urllib.error import URLError, HTTPError, ContentTooShortError
 
 
-def download(url, user_agent='wswp', num_retries=2):
+def download(url, num_retries=2, user_agent='wswp'):
     print('Downloading:', url)
     request = urllib.request.Request(url)
     request.add_header('User-agent', user_agent)

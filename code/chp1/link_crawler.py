@@ -4,7 +4,7 @@ from urllib.parse import urljoin
 from urllib.error import URLError, HTTPError, ContentTooShortError
 
 
-def download(url, user_agent='wswp', num_retries=2, charset='utf-8'):
+def download(url, num_retries=2, user_agent='wswp', charset='utf-8'):
     print('Downloading:', url)
     request = urllib.request.Request(url)
     request.add_header('User-agent', user_agent)

@@ -6,7 +6,7 @@ from urllib.error import URLError, HTTPError, ContentTooShortError
 from chp1.throttle import Throttle
 
 
-def download(url, user_agent='wswp', num_retries=2, charset='utf-8', proxy=None):
+def download(url, num_retries=2, user_agent='wswp', charset='utf-8', proxy=None):
     """ Download a given URL and return the page content
         args:
             url (str): URL
