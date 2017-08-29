@@ -1,6 +1,6 @@
 ## Web Scraping with Python
 
-Welcome to the code repository for [Web Scraping with Python, Second Edition]()! I hope you find the code and data here useful. If you have any questions reach out to @kjam on Twitter or GitHub.
+Welcome to the code repository for [Web Scraping with Python, Second Edition](https://www.packtpub.com/big-data-and-business-intelligence/python-web-scraping-second-edition)! I hope you find the code and data here useful. If you have any questions reach out to @kjam on Twitter or GitHub.
 
 ### Code Structure
 
@@ -19,6 +19,19 @@ Depending on your version of Firefox and Selenium, you may run into JavaScript e
  * Use Chrome, InternetExplorer or any other [supported browser](http://www.seleniumhq.org/about/platforms.jsp)
 
 Feel free to reach out if you have any questions!
+
+### Issues with Module Import
+
+Seeing chp1 ModuleNotFound errors? Try adding this snippet to the file:
+
+```
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
+```
+
+What this does is append the main module to your system path, which is where Python looks for imports. On some installations, I have noticed the current directory is not immediately added (common practice), so this code *explicitly* adds that directory to your path. 
+
 
 ### Corrections?
 
