@@ -104,7 +104,7 @@ def threaded_crawler_rq(start_url, link_regex, user_agent='wswp', proxies=None,
                 else:
                     links = []
                 # filter for links matching our regular expression
-                for link in get_links(html, link_regex) + links:
+                for link in list(get_links(html, link_regex)) + links:
                     if 'http' not in link:
                         link = clean_link(url, domain, link)
                     crawl_queue.push(link)
