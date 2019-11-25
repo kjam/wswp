@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 LOGIN_URL = 'http://example.webscraping.com/user/login'
 LOGIN_EMAIL = 'example@webscraping.com'
 LOGIN_PASSWORD = 'example'
-COUNTRY_URL = 'http://example.webscraping.com/edit/United-Kingdom-239'
+COUNTRY_URL = 'http://example.webscraping.com/places/default/edit/United-Kingdom-239'
 
 
 def get_driver():

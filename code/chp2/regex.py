@@ -1,7 +1,7 @@
 import re
 from chp1.advanced_link_crawler import download
 
-url = 'http://example.webscraping.com/view/UnitedKingdom-239'
+url = 'http://example.webscraping.com/places/default/view/UnitedKingdom-239'
 html = download(url)
 
 print(re.findall(r'<td class="w2p_fw">(.*?)</td>', html))

@@ -3,7 +3,7 @@ from urllib.parse import urlsplit
 
 # how to manage converting urls into filenames
 
-url = 'http://example.webscraping.com/default/view/Australia-1'
+url = 'http://example.webscraping.com/places/default/view/Australia-1'
 filename = re.sub('[^/0-9a-zA-Z\-.,;_ ]', '_', url)
 filename = '/'.join(segment[:255] for segment in filename.split('/'))
 print(filename)

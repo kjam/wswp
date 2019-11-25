@@ -3,8 +3,8 @@ import json
 from lxml.html import fromstring
 from chp6.login import login, parse_form
 
-COUNTRY_URL = 'http://example.webscraping.com/edit/United-Kingdom-239'
-VIEW_URL = 'http://example.webscraping.com/view/United-Kingdom-239'
+COUNTRY_URL = 'http://example.webscraping.com/places/default/edit/United-Kingdom-239'
+VIEW_URL = 'http://example.webscraping.com/places/default/view/United-Kingdom-239'
 
 
 def get_population():
